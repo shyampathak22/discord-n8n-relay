@@ -1,6 +1,7 @@
 import os
 import asyncio
 import requests
+from requests import RequestException
 from flask import Flask, request
 import discord
 from dotenv import load_dotenv
@@ -56,10 +57,24 @@ async def on_message(msg: discord.Message):
 
         # non-blocking HTTP request to n8n webhook
         asyncio.get_event_loop().run_in_executor(
-            None, lambda: requests.post(
-                N8N_WEBHOOK_URL, json=payload, timeout=30
-            )
+            None, dispatch_payload, payload
         )
+
+
+def dispatch_payload(payload: dict):
+    """Send payload to the configured n8n webhook."""
+    try:
+        response = requests.post(N8N_WEBHOOK_URL, json=payload, timeout=30)
+        if response.status_code != 200:
+            print(
+                f"n8n webhook returned {response.status_code}: "
+                f"{response.text}"
+            )
+        else:
+            # successful dispatch logging is helpful for debugging
+            print("Dispatched payload to n8n successfully")
+    except RequestException as exc:
+        print(f"Error sending payload to n8n webhook: {exc}")
 
 # flask + discord on one render app
 
