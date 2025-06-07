@@ -14,8 +14,8 @@ Create a `.env` file with the following values:
 ```
 DISCORD_TOKEN=<your discord bot token>
 N8N_WEBHOOK_URL=<n8n webhook URL>
-# Optional, defaults to `!`
-BOT_PREFIX=!ask 
+# Optional, defaults to `!ask `
+BOT_PREFIX="!ask "
 ```
 
 Start the relay:
