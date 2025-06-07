@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: discord-n8n-relay
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: N8N_WEBHOOK_URL
+        sync: false
+      # optional (defaults to "!"), lets users type "!ask …"
+      - key: BOT_PREFIX
+        value: "!ask "
