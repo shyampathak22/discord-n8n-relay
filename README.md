@@ -18,7 +18,7 @@ N8N_WEBHOOK_URL=<n8n webhook URL>
 BOT_PREFIX="!ask "
 ```
 
-Start the relay:
+Start the relay (uses Waitress instead of Flask's development server):
 
 ```bash
 python app.py
