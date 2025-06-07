@@ -23,3 +23,7 @@ Start the relay (uses Waitress instead of Flask's development server):
 ```bash
 python app.py
 ```
+
+The server exposes a trivial `/ping` endpoint that returns `pong`. You can
+use it with uptime monitoring services such as UptimeRobot to keep the Render
+instance awake.
