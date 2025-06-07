@@ -12,6 +12,7 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 N8N_WEBHOOK_URL = os.getenv("N8N_WEBHOOK_URL")
 BOT_PREFIX = os.getenv("BOT_PREFIX", "!")
+PORT = int(os.getenv("PORT", 10000))
 
 
 # flask api endpoint (render exposes port 10000 as default)
@@ -64,7 +65,7 @@ async def on_message(msg: discord.Message):
 # flask + discord on one render app
 
 def run():
-    Thread(target=lambda: app.run(host='0.0.0.0', port=10000)).start()
+    Thread(target=lambda: app.run(host='0.0.0.0', port=PORT)).start()
     client.run(DISCORD_TOKEN)
 
 if __name__ == "__main__":
