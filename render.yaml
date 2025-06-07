@@ -9,7 +9,7 @@ services:
         sync: false
       - key: N8N_WEBHOOK_URL
         sync: false
-      # optional (defaults to "!"), lets users type "!ask …"
+      # optional (defaults to "!ask "), lets users type "!ask …"
       - key: BOT_PREFIX
         value: "!ask "
 

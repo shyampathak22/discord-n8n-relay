@@ -11,7 +11,7 @@ from threading import Thread
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 N8N_WEBHOOK_URL = os.getenv("N8N_WEBHOOK_URL")
-BOT_PREFIX = os.getenv("BOT_PREFIX", "!")
+BOT_PREFIX = os.getenv("BOT_PREFIX", "!ask ")
 
 
 # flask api endpoint (render exposes port 10000 as default)
