@@ -19,6 +19,11 @@ BOT_PREFIX = os.getenv("BOT_PREFIX", "!ask ")
 # flask api endpoint (render exposes port 10000 as default)
 app = Flask(__name__)
 
+@app.get("/ping")
+def ping():
+    """Simple endpoint used for uptime checks."""
+    return "pong"
+
 @app.route("/reply", methods=["POST"])
 def reply():
     """
