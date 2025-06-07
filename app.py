@@ -5,6 +5,7 @@ from flask import Flask, request
 import discord
 from dotenv import load_dotenv
 from threading import Thread
+from waitress import serve
 
 
 # --env config--
@@ -64,7 +65,7 @@ async def on_message(msg: discord.Message):
 # flask + discord on one render app
 
 def run():
-    Thread(target=lambda: app.run(host='0.0.0.0', port=10000)).start()
+    Thread(target=lambda: serve(app, host='0.0.0.0', port=10000)).start()
     client.run(DISCORD_TOKEN)
 
 if __name__ == "__main__":
