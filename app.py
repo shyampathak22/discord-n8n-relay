@@ -1,10 +1,10 @@
 import os
 import asyncio
-import json
 import requests
 from flask import Flask, request
 import discord
 from dotenv import load_dotenv
+from threading import Thread
 
 
 # --env config--
@@ -31,7 +31,7 @@ def reply():
     asyncio.run_coroutine_threadsafe(
         channel.send(body['content']), client.loop
     )
-    return '', 34
+    return '', 204
 
 
 # discord gateway
@@ -41,7 +41,7 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 @client.event
-async def on_messgae(msg: discord.Message):
+async def on_message(msg: discord.Message):
     if msg.author.bot:
         return # ignore bot messages
     if msg.content.startswith(BOT_PREFIX):

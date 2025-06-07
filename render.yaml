@@ -12,3 +12,4 @@ services:
       # optional (defaults to "!"), lets users type "!ask …"
       - key: BOT_PREFIX
         value: "!ask "
+
